@@ -40,22 +40,29 @@ class Users{
         $query = "INSERT INTO
                     " . $this->table_name . "
                 SET
-                firstname=:firstname, address=:address, lastname=:lastname, gender=:gender, age=:age";
+                firstname=:firstname, 
+                lastname=:lastname, 
+                address=:address, 
+                gender=:gender, 
+                number=:number, 
+                age=:age";
     
         // prepare query
         $stmt = $this->conn->prepare($query);
     
         // sanitize
         $this->firstname=htmlspecialchars(strip_tags($this->firstname));
-        $this->address=htmlspecialchars(strip_tags($this->address));
         $this->lastname=htmlspecialchars(strip_tags($this->lastname));
+        $this->address=htmlspecialchars(strip_tags($this->address));
         $this->gender=htmlspecialchars(strip_tags($this->gender));
+        $this->number=htmlspecialchars(strip_tags($this->number));
         $this->age=htmlspecialchars(strip_tags($this->age));
     
         // bind values
         $stmt->bindParam(":firstname", $this->firstname);
         $stmt->bindParam(":address", $this->address);
         $stmt->bindParam(":lastname", $this->lastname);
+        $stmt->bindParam(":number", $this->number);
         $stmt->bindParam(":gender", $this->gender);
         $stmt->bindParam(":age", $this->age);
     
